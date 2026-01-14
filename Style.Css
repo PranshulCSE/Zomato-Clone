@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(253, 235, 235);
+}
+.card{
+    display:inline-block;
+    height: auto;
+    width: 300px;
+    margin: 20px;
+    padding: 10px;
+    border:2px solid rgb(253, 235, 235);
+    border-radius: 10px;
+
+}
+.card:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: white;
+    
+    border:2px solid white;
+}
+.Box{
+    display: inline-block;
+}
+#image {
+    height:auto;
+    width:270px;
+    border-radius: 20px;
+}
+#card_Image{
+    position: relative;
+}
+.off{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(9, 9, 245, 0.6);
+    color:white;
+    padding: 5px;
+
+}
+.restraunt,.food,.location{
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.restraunt_name{
+    font-size: 18px;
+    font-weight: bold;
+}
+.rating{
+    background-color: green;
+    color: white;
+    height: 25px;
+    padding: 5px;
+    line-height: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    position:absolute;
+    right: 5px;
+}
+.price{
+    position: absolute;
+    right: 5px;
+}
+.distance{
+    position: absolute;
+    right: 5px;
+}
+.food_name,.price,.place{
+    font-size: 15px;
+    color:rgb(96, 96, 96)
+}
+.distance{
+    font-weight: bold;
+    font-size: 14px;
+}
