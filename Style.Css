@@ -79,6 +79,39 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+/* Second Block */
+.second{
+    background:linear-gradient(135deg, #fdecec, #fff);
+}
+.line,.images,.texts{
+    display: inline-block;
+}
+.dining{
+    margin-left: 150px;
+}
+.texts a{
+    margin-right: 50px;
+    cursor: pointer;
+    color:#444;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 500;
+   position: relative;
+   bottom: 12px;
+}
+.texts a:active{
+    color: red;
+    text-decoration:red;
+}
+.second img{
+    width: 50px;
+    margin-right: 20px;
+}
+
+
+
+
+
 /* Card Container */
 .card {
     display: inline-block;
