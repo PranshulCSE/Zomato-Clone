@@ -4,505 +4,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zomato</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Zomato - Food Delivery & Dining</title>
+    <link rel="stylesheet" href="Style.Css">
 </head>
 
 <body>
-    <header>
-        <div class="first">
-            <div class="head">
+    <!-- STICKY NAVBAR -->
+    <header class="navbar">
+        <div class="navbar__container">
+            <div class="navbar__brand">
                 <h1>Zomato</h1>
             </div>
-            <div class="search-bar">
-                <!-- This Div Contain Location Dropdown and Searchbar too -->
-                <select name="location" id="location" title="Select your city">
-                    <option value="karnal" selected>Karnal</option>
+
+            <div class="navbar__search">
+                <select id="location" class="location-select" title="Select your city">
+                    <option value="karnal">Karnal</option>
                     <option value="delhi">Delhi</option>
                     <option value="chandigarh">Chandigarh</option>
                     <option value="bangalore">Bangalore</option>
                     <option value="mumbai">Mumbai</option>
                     <option value="pune">Pune</option>
                     <option value="jaipur">Jaipur</option>
-                    <!-- <input type="text" placeholder="Enter Your City"> -->
                 </select>
 
-                <input type="text" placeholder="Search for restaurant, cuisine or a dish">
-                <button type="submit">Search</button>
+                <input type="text" id="search-input" class="search-input"
+                    placeholder="Search restaurants, cuisines, or dishes" aria-label="Search for restaurants">
             </div>
-            <div class="log">
-                <button>Login</button>
-            </div>
-            <div class="sign">
-                <button>Sign Up</button>
+
+            <div class="navbar__actions">
+                <button class="btn-login">Login</button>
+                <button class="btn-signup">Sign Up</button>
             </div>
         </div>
-        <div class="second">
-            <div class="dining line">
-                <div class="images">
-                    <img src="./Assets/Dining.png" alt="Dining Image">
-                </div>
-                <div class="dine texts">
-                    <a href="#">Dining Out</a>
-                </div>
-            </div>
-            <div class="delivery line">
-                <div class="images">
-                    <img src="./Assets/Delivery.png" alt="Delivery Image">
-                </div>
-                <div class="deliver texts">
-                    <a href="./index.html">Delivery</a>
-                </div>
-            </div>
-            <div class="nightlife line">
-                <div class="images">
-                    <img src="./Assets/Nightlife.png" alt="Night Life Image">
-                </div>
-                <div class="night texts">
-                    <a href="#">NightLife</a>
-                </div>
-            </div>
+
+        <!-- CATEGORY FILTER (STICKY) -->
+        <div class="category-filter">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="dining">
+                <img src="./Assets/Dining.png" alt="Dining">
+                <span>Dining Out</span>
+            </button>
+            <button class="category-btn" data-category="delivery">
+                <img src="./Assets/Delivery.png" alt="Delivery">
+                <span>Delivery</span>
+            </button>
+            <button class="category-btn" data-category="nightlife">
+                <img src="./Assets/Nightlife.png" alt="Nightlife">
+                <span>Nightlife</span>
+            </button>
         </div>
     </header>
 
-    <main>
-        <div class="outer-container">
-            <div class="card">
-                <!-- Image Details -->
-                <div id="card_Image">
-                    <img id="image" src="./Assets/Restraunt1.png" alt="restraunt image">
-                    <p class="off"> Flat 25% OFF</p>
-                </div>
-                <!-- Restraunt Name -->
-                <div class="restraunt">
-                    <div class="restraunt_name Box">
-                        <p>P-P High Bar & Restraunt</p>
-                    </div>
-                    <div class="rating Box">
-                        <p>4.2 ★</p>
-                    </div>
-                </div>
-                <!-- Food Details -->
-                <div class="food">
-                    <div class="food_name Box">
-                        <p>
-                            North Indian, Chinese
-                        </p>
-                    </div>
-                    <div class="price Box">
-                        <p>&#8377;2800 for two</p>
-                    </div>
-                </div>
-                <!-- Location Details -->
-                <div class="location">
-                    <div class="place Box">
-                        <p>Railway Road,Karnal</p>
-                    </div>
-                    <div class="distance Box">
-                        <p> 2.5 km</p>
-                    </div>
-                </div>
+    <!-- FILTERS & SORT BAR -->
+    <div class="filters-bar">
+        <div class="filters-container">
+            <div class="sort-group">
+                <label for="sort-select">Sort by:</label>
+                <select id="sort-select" class="sort-select">
+                    <option value="trending">Trending</option>
+                    <option value="rating-high">Rating: High to Low</option>
+                    <option value="rating-low">Rating: Low to High</option>
+                    <option value="distance">Distance: Near to Far</option>
+                    <option value="cost-low">Cost: Low to High</option>
+                    <option value="cost-high">Cost: High to Low</option>
+                </select>
             </div>
-            <div class="card">
-                <!-- Image Details -->
-                <div id="card_Image">
-                    <img id="image" src="./Assets/Restraunt2..png" alt="restraunt image">
-                    <p class="off"> Flat 25% OFF</p>
-                </div>
-                <!-- Restraunt Name -->
-                <div class="restraunt">
-                    <div class="restraunt_name Box">
-                        <p>Munshi Ram & Sons</p>
-                    </div>
-                    <div class="rating Box">
-                        <p>4.4 ★</p>
-                    </div>
-                </div>
-                <!-- Food Details -->
-                <div class="food">
-                    <div class="food_name Box">
-                        <p>
-                            North Indian, Chinese, Bakery
-                        </p>
-                    </div>
-                    <div class="price Box">
-                        <p>&#8377;800 for two</p>
-                    </div>
-                </div>
-                <!-- Location Details -->
-                <div class="location">
-                    <div class="place Box">
-                        <p>Guru NanakPura,Karnal</p>
-                    </div>
-                    <div class="distance Box">
-                        <p> 1.9 km</p>
-                    </div>
-                </div>
+
+            <div class="filter-group">
+                <label for="cost-filter">Price Range:</label>
+                <select id="cost-filter" class="cost-filter">
+                    <option value="">All Prices</option>
+                    <option value="budget">Budget (₹0-500)</option>
+                    <option value="moderate">Moderate (₹500-2000)</option>
+                    <option value="premium">Premium (₹2000+)</option>
+                </select>
             </div>
-            <div class="card">
-                <!-- Image Details -->
-                <div id="card_Image">
-                    <img id="image" src="./Assets/Restraunt1.png" alt="restraunt image">
-                    <p class="off"> Flat 10% OFF</p>
-                </div>
-                <!-- Restraunt Name -->
-                <div class="restraunt">
-                    <div class="restraunt_name Box">
-                        <p>Thrones</p>
-                    </div>
-                    <div class="rating Box">
-                        <p>4.6 ★</p>
-                    </div>
-                </div>
-                <!-- Food Details -->
-                <div class="food">
-                    <div class="food_name Box">
-                        <p>
-                            North Indian, Chinese, Bar
-                        </p>
-                    </div>
-                    <div class="price Box">
-                        <p>&#8377;2200 for two</p>
-                    </div>
-                </div>
-                <!-- Location Details -->
-                <div class="location">
-                    <div class="place Box">
-                        <p>Alpha International City,Karnal</p>
-                    </div>
-                    <div class="distance Box">
-                        <p> 5.9 km</p>
-                    </div>
-                </div>
+        </div>
+
+        <button id="reset-filters" class="btn-reset">Reset Filters</button>
+    </div>
+
+    <!-- COLLECTIONS SECTION -->
+    <section class="collections">
+        <h2>Collections</h2>
+        <p>Explore curated lists of top restaurants, cafes, pubs, and bars in your city</p>
+        <div class="collections-grid" id="collections-grid">
+            <!-- Dynamically populated -->
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="restaurants-container">
+        <!-- EMPTY STATE (Hidden by default) -->
+        <div id="empty-state" class="empty-state hidden">
+            <div class="empty-state__content">
+                <h3>No restaurants found</h3>
+                <p>Try adjusting your search or filters</p>
             </div>
+        </div>
+
+        <!-- RESTAURANTS GRID -->
+        <div id="restaurants-grid" class="restaurants-grid">
+            <!-- Restaurant Card 1 -->
             <div class="card">
-                <!-- Image Details -->
-                <div id="card_Image">
-                    <img id="image" src="./Assets/Restraunt2..png" alt="restraunt image">
-                    <p class="off"> Flat 15% OFF</p>
+                <div class="card__image">
+                    <img src="./Assets/Restraunt1.png" alt="P-P High Bar & Restraunt">
+                    <div class="card__discount">Flat 25% OFF</div>
                 </div>
-                <!-- Restraunt Name -->
-                <div class="restraunt">
-                    <div class="restraunt_name Box">
-                        <p>Vatika Bar & Restraunt</p>
+                <div class="card__content">
+                    <div class="card__header">
+                        <h3 class="card__name">P-P High Bar & Restraunt</h3>
+                        <span class="card__rating">4.2 ★</span>
                     </div>
-                    <div class="rating Box">
-                        <p>3.9 ★</p>
+                    <p class="card__cuisine">North Indian, Chinese</p>
+                    <div class="card__meta">
+                        <span class="card__price">₹2800 for two</span>
+                        <span class="card__distance">2.5 km</span>
                     </div>
-                </div>
-                <!-- Food Details -->
-                <div class="food">
-                    <div class="food_name Box">
-                        <p>
-                            Bar, Chinese, North Indian
-                        </p>
-                    </div>
-                    <div class="price Box">
-                        <p>&#8377;6000 for four</p>
-                    </div>
-                </div>
-                <!-- Location Details -->
-                <div class="location">
-                    <div class="place Box">
-                        <p>Super Mall 12 Sec,Karnal</p>
-                    </div>
-                    <div class="distance Box">
-                        <p> 4.6 km</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <!-- Image Details -->
-                <div id="card_Image">
-                    <img id="image" src="./Assets/Restraunt2..png" alt="restraunt image">
-                    <!-- <p class="off"> Flat 25% OFF</p> -->
-                </div>
-                <!-- Restraunt Name -->
-                <div class="restraunt">
-                    <div class="restraunt_name Box">
-                        <p>Surinder Vaishno Dhaba</p>
-                    </div>
-                    <div class="rating Box">
-                        <p>4.4★</p>
-                    </div>
-                </div>
-                <!-- Food Details -->
-                <div class="food">
-                    <div class="food_name Box">
-                        <p>
-                            North Indian, Snacks
-                        </p>
-                    </div>
-                    <div class="price Box">
-                        <p>&#8377;800 for two</p>
-                    </div>
-                </div>
-                <!-- Location Details -->
-                <div class="location">
-                    <div class="place Box">
-                        <p>Railway Road,Karnal</p>
-                    </div>
-                    <div class="distance Box">
-                        <p> 3.8 km</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <!-- Image Details -->
-                <div id="card_Image">
-                    <img id="image" src="./Assets/Restraunt1.png" alt="restraunt image">
-                    <p class="off"> Flat 25% OFF</p>
-                </div>
-                <!-- Restraunt Name -->
-                <div class="restraunt">
-                    <div class="restraunt_name Box">
-                        <p>Kalra Sweets & Restraunt</p>
-                    </div>
-                    <div class="rating Box">
-                        <p>4.1 ★</p>
-                    </div>
-                </div>
-                <!-- Food Details -->
-                <div class="food">
-                    <div class="food_name Box">
-                        <p>
-                            Sweets, Snacks, North Indian, Chinese
-                        </p>
-                    </div>
-                    <div class="price Box">
-                        <p>&#8377;900 for two</p>
-                    </div>
-                </div>
-                <!-- Location Details -->
-                <div class="location">
-                    <div class="place Box">
-                        <p>Sec 13,Karnal</p>
-                    </div>
-                    <div class="distance Box">
-                        <p> 4.3 km</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <!-- Image Details -->
-                <div id="card_Image">
-                    <img id="image" src="./Assets/Restraunt2..png" alt="restraunt image">
-                    <p class="off"> Flat 25% OFF</p>
-                </div>
-                <!-- Restraunt Name -->
-                <div class="restraunt">
-                    <div class="restraunt_name Box">
-                        <p> Cafe Grillz</p>
-                    </div>
-                    <div class="rating Box">
-                        <p>3.9 ★</p>
-                    </div>
-                </div>
-                <!-- Food Details -->
-                <div class="food">
-                    <div class="food_name Box">
-                        <p>
-                            Italian, Continental, Chinese
-                        </p>
-                    </div>
-                    <div class="price Box">
-                        <p>&#8377;1200 for three</p>
-                    </div>
-                </div>
-                <!-- Location Details -->
-                <div class="location">
-                    <div class="place Box">
-                        <p>Model Town,Karnal</p>
-                    </div>
-                    <div class="distance Box">
-                        <p> 5.1 km</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <!-- Image Details -->
-                <div id="card_Image">
-                    <img id="image" src="./Assets/Restraunt1.png" alt="restraunt image">
-                    <!-- <p class="off"> Flat 25% OFF</p> -->
-                </div>
-                <!-- Restraunt Name -->
-                <div class="restraunt">
-                    <div class="restraunt_name Box">
-                        <p>KFC</p>
-                    </div>
-                    <div class="rating Box">
-                        <p>4.6 ★</p>
-                    </div>
-                </div>
-                <!-- Food Details -->
-                <div class="food">
-                    <div class="food_name Box">
-                        <p>
-                            Fast Food, Beverages
-                        </p>
-                    </div>
-                    <div class="price Box">
-                        <p>&#8377;1000 for two</p>
-                    </div>
-                </div>
-                <!-- Location Details -->
-                <div class="location">
-                    <div class="place Box">
-                        <p>National Highway,Karnal</p>
-                    </div>
-                    <div class="distance Box">
-                        <p> 7.2 km</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <!-- Image Details -->
-                <div id="card_Image">
-                    <img id="image" src="./Assets/Restraunt1.png" alt="restraunt image">
-                    <p class="off"> Flat 25% OFF</p>
-                </div>
-                <!-- Restraunt Name -->
-                <div class="restraunt">
-                    <div class="restraunt_name Box">
-                        <p>Neelkanth Star</p>
-                    </div>
-                    <div class="rating Box">
-                        <p>4.7 ★</p>
-                    </div>
-                </div>
-                <!-- Food Details -->
-                <div class="food">
-                    <div class="food_name Box">
-                        <p>
-                            North Indian, Snacks, fast Food
-                        </p>
-                    </div>
-                    <div class="price Box">
-                        <p>&#8377;600 for one</p>
-                    </div>
-                </div>
-                <!-- Location Details -->
-                <div class="location">
-                    <div class="place Box">
-                        <p>National Highway, Karnal</p>
-                    </div>
-                    <div class="distance Box">
-                        <p> 7.2 km</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <!-- Image Details -->
-                <div id="card_Image">
-                    <img id="image" src="./Assets/Restraunt2..png" alt="restraunt image">
-                    <!-- <p class="off"> Flat 25% OFF</p> -->
-                </div>
-                <!-- Restraunt Name -->
-                <div class="restraunt">
-                    <div class="restraunt_name Box">
-                        <p>Sukoon</p>
-                    </div>
-                    <div class="rating Box">
-                        <p>3.9 ★</p>
-                    </div>
-                </div>
-                <!-- Food Details -->
-                <div class="food">
-                    <div class="food_name Box">
-                        <p>
-                            Fast Food, Beverages , Snacks
-                        </p>
-                    </div>
-                    <div class="price Box">
-                        <p>&#8377;600 for one</p>
-                    </div>
-                </div>
-                <!-- Location Details -->
-                <div class="location">
-                    <div class="place Box">
-                        <p>Sec 12,Karnal</p>
-                    </div>
-                    <div class="distance Box">
-                        <p> 4.8 km</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <!-- Image Details -->
-                <div id="card_Image">
-                    <img id="image" src="./Assets/Restraunt1.png" alt="restraunt image">
-                    <p class="off"> Flat 30% OFF</p>
-                </div>
-                <!-- Restraunt Name -->
-                <div class="restraunt">
-                    <div class="restraunt_name Box">
-                        <p>Wadhwa Bhojnalya</p>
-                    </div>
-                    <div class="rating Box">
-                        <p>4.3 ★</p>
-                    </div>
-                </div>
-                <!-- Food Details -->
-                <div class="food">
-                    <div class="food_name Box">
-                        <p>
-                            North Indian, Breads
-                        </p>
-                    </div>
-                    <div class="price Box">
-                        <p>&#8377;500 for two</p>
-                    </div>
-                </div>
-                <!-- Location Details -->
-                <div class="location">
-                    <div class="place Box">
-                        <p>Meerut Road,Karnal</p>
-                    </div>
-                    <div class="distance Box">
-                        <p> 6.2 km</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <!-- Image Details -->
-                <div id="card_Image">
-                    <img id="image" src="./Assets/Restraunt2..png" alt="restraunt image">
-                    <p class="off"> Flat 15% OFF</p>
-                </div>
-                <!-- Restraunt Name -->
-                <div class="restraunt">
-                    <div class="restraunt_name Box">
-                        <p>Burger King</p>
-                    </div>
-                    <div class="rating Box">
-                        <p>4.5 ★</p>
-                    </div>
-                </div>
-                <!-- Food Details -->
-                <div class="food">
-                    <div class="food_name Box">
-                        <p>
-                            Fast Food, Beverages
-                        </p>
-                    </div>
-                    <div class="price Box">
-                        <p>&#8377;500 for two</p>
-                    </div>
-                </div>
-                <!-- Location Details -->
-                <div class="location">
-                    <div class="place Box">
-                        <p>Old Bus Stand,Karnal</p>
-                    </div>
-                    <div class="distance Box">
-                        <p> 3.8 km</p>
-                    </div>
+                    <p class="card__location">Railway Road, Karnal</p>
                 </div>
             </div>
 
+            <!-- Restaurant Card 2 -->
+            <div class="card">
+                <div class="card__image">
+                    <img src="./Assets/Restraunt2.png" alt="Munshi Ram & Sons">
+                    <div class="card__discount">Flat 25% OFF</div>
+                </div>
+                <div class="card__content">
+                    <div class="card__header">
+                        <h3 class="card__name">Munshi Ram & Sons</h3>
+                        <span class="card__rating">4.4 ★</span>
+                    </div>
+                    <p class="card__cuisine">North Indian, Chinese, Bakery</p>
+                    <div class="card__meta">
+                        <span class="card__price">₹800 for two</span>
+                        <span class="card__distance">1.9 km</span>
+                    </div>
+                    <p class="card__location">Guru Nanak Pura, Karnal</p>
+                </div>
+            </div>
+
+            <!-- Restaurant Card 3 -->
+            <div class="card">
+                <div class="card__image">
+                    <img src="./Assets/Restraunt1.png" alt="Thrones">
+                    <div class="card__discount">Flat 10% OFF</div>
+                </div>
+                <div class="card__content">
+                    <div class="card__header">
+                        <h3 class="card__name">Thrones</h3>
+                        <span class="card__rating">4.6 ★</span>
+                    </div>
+                    <p class="card__cuisine">North Indian, Chinese, Bar</p>
+                    <div class="card__meta">
+                        <span class="card__price">₹2200 for two</span>
+                        <span class="card__distance">5.9 km</span>
+                    </div>
+                    <p class="card__location">Alpha International City, Karnal</p>
+                </div>
+            </div>
+
+            <!-- Restaurant Card 4 -->
+            <div class="card">
+                <div class="card__image">
+                    <img src="./Assets/Restraunt2.png" alt="Vatika Bar & Restraunt">
+                    <div class="card__discount">Flat 15% OFF</div>
+                </div>
+                <div class="card__content">
+                    <div class="card__header">
+                        <h3 class="card__name">Vatika Bar & Restraunt</h3>
+                        <span class="card__rating">3.9 ★</span>
+                    </div>
+                    <p class="card__cuisine">Bar, Chinese, North Indian</p>
+                    <div class="card__meta">
+                        <span class="card__price">₹6000 for four</span>
+                        <span class="card__distance">4.6 km</span>
+                    </div>
+                    <p class="card__location">Super Mall 12 Sec, Karnal</p>
+                </div>
+            </div>
+
+            <!-- Restaurant Card 5 -->
+            <div class="card">
+                <div class="card__image">
+                    <img src="./Assets/Restraunt2.png" alt="Surinder Vaishno Dhaba">
+                </div>
+                <div class="card__content">
+                    <div class="card__header">
+                        <h3 class="card__name">Surinder Vaishno Dhaba</h3>
+                        <span class="card__rating">4.4 ★</span>
+                    </div>
+                    <p class="card__cuisine">North Indian, Snacks</p>
+                    <div class="card__meta">
+                        <span class="card__price">₹800 for two</span>
+                        <span class="card__distance">3.8 km</span>
+                    </div>
+                    <p class="card__location">Railway Road, Karnal</p>
+                </div>
+            </div>
+
+            <!-- Restaurant Card 6 -->
+            <div class="card">
+                <div class="card__image">
+                    <img src="./Assets/Restraunt1.png" alt="Kalra Sweets & Restraunt">
+                    <div class="card__discount">Flat 25% OFF</div>
+                </div>
+                <div class="card__content">
+                    <div class="card__header">
+                        <h3 class="card__name">Kalra Sweets & Restraunt</h3>
+                        <span class="card__rating">4.1 ★</span>
+                    </div>
+                    <p class="card__cuisine">Sweets, Snacks, North Indian, Chinese</p>
+                    <div class="card__meta">
+                        <span class="card__price">₹900 for two</span>
+                        <span class="card__distance">4.3 km</span>
+                    </div>
+                    <p class="card__location">Sec 13, Karnal</p>
+                </div>
+            </div>
+
+            <!-- Restaurant Card 7 -->
+            <div class="card">
+                <div class="card__image">
+                    <img src="./Assets/Restraunt2.png" alt="Cafe Grillz">
+                    <div class="card__discount">Flat 25% OFF</div>
+                </div>
+                <div class="card__content">
+                    <div class="card__header">
+                        <h3 class="card__name">Cafe Grillz</h3>
+                        <span class="card__rating">3.9 ★</span>
+                    </div>
+                    <p class="card__cuisine">Italian, Continental, Chinese</p>
+                    <div class="card__meta">
+                        <span class="card__price">₹1200 for three</span>
+                        <span class="card__distance">5.1 km</span>
+                    </div>
+                    <p class="card__location">Model Town, Karnal</p>
+                </div>
+            </div>
+
+            <!-- Restaurant Card 8 -->
+            <div class="card">
+                <div class="card__image">
+                    <img src="./Assets/Restraunt1.png" alt="KFC">
+                </div>
+                <div class="card__content">
+                    <div class="card__header">
+                        <h3 class="card__name">KFC</h3>
+                        <span class="card__rating">4.6 ★</span>
+                    </div>
+                    <p class="card__cuisine">Fast Food, Beverages</p>
+                    <div class="card__meta">
+                        <span class="card__price">₹1000 for two</span>
+                        <span class="card__distance">7.2 km</span>
+                    </div>
+                    <p class="card__location">National Highway, Karnal</p>
+                </div>
+            </div>
+
+            <!-- Restaurant Card 9 -->
+            <div class="card">
+                <div class="card__image">
+                    <img src="./Assets/Restraunt1.png" alt="Neelkanth Star">
+                    <div class="card__discount">Flat 25% OFF</div>
+                </div>
+                <div class="card__content">
+                    <div class="card__header">
+                        <h3 class="card__name">Neelkanth Star</h3>
+                        <span class="card__rating">4.7 ★</span>
+                    </div>
+                    <p class="card__cuisine">North Indian, Snacks, Fast Food</p>
+                    <div class="card__meta">
+                        <span class="card__price">₹600 for one</span>
+                        <span class="card__distance">7.2 km</span>
+                    </div>
+                    <p class="card__location">National Highway, Karnal</p>
+                </div>
+            </div>
+
+            <!-- Restaurant Card 10 -->
+            <div class="card">
+                <div class="card__image">
+                    <img src="./Assets/Restraunt2.png" alt="Sukoon">
+                </div>
+                <div class="card__content">
+                    <div class="card__header">
+                        <h3 class="card__name">Sukoon</h3>
+                        <span class="card__rating">3.9 ★</span>
+                    </div>
+                    <p class="card__cuisine">Fast Food, Beverages, Snacks</p>
+                    <div class="card__meta">
+                        <span class="card__price">₹600 for one</span>
+                        <span class="card__distance">4.8 km</span>
+                    </div>
+                    <p class="card__location">Sec 12, Karnal</p>
+                </div>
+            </div>
+
+            <!-- Restaurant Card 11 -->
+            <div class="card">
+                <div class="card__image">
+                    <img src="./Assets/Restraunt1.png" alt="Wadhwa Bhojnalya">
+                    <div class="card__discount">Flat 30% OFF</div>
+                </div>
+                <div class="card__content">
+                    <div class="card__header">
+                        <h3 class="card__name">Wadhwa Bhojnalya</h3>
+                        <span class="card__rating">4.3 ★</span>
+                    </div>
+                    <p class="card__cuisine">North Indian, Breads</p>
+                    <div class="card__meta">
+                        <span class="card__price">₹500 for two</span>
+                        <span class="card__distance">6.2 km</span>
+                    </div>
+                    <p class="card__location">Meerut Road, Karnal</p>
+                </div>
+            </div>
+
+            <!-- Restaurant Card 12 -->
+            <div class="card">
+                <div class="card__image">
+                    <img src="./Assets/Restraunt2.png" alt="Burger King">
+                    <div class="card__discount">Flat 15% OFF</div>
+                </div>
+                <div class="card__content">
+                    <div class="card__header">
+                        <h3 class="card__name">Burger King</h3>
+                        <span class="card__rating">4.5 ★</span>
+                    </div>
+                    <p class="card__cuisine">Fast Food, Beverages</p>
+                    <div class="card__meta">
+                        <span class="card__price">₹500 for two</span>
+                        <span class="card__distance">3.8 km</span>
+                    </div>
+                    <p class="card__location">Old Bus Stand, Karnal</p>
+                </div>
+            </div>
         </div>
     </main>
+
+    <!-- LOADING SPINNER (Optional) -->
+    <div id="loading-spinner" class="loading-spinner hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="./Script.js"></script>
 </body>
-<script src="./Script.js"></script>
 
 </html>
