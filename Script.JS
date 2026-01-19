@@ -144,3 +144,36 @@ const restaurantsDB = [
         category: "delivery"
     }
 ];
+
+const collectionsDB = [
+    {
+        title: "New in Town",
+        subtitle: "Top-Places",
+        image: "./Assets/Interior1.jpg"
+    },
+    {
+        title: "Trending Now",
+        subtitle: "Popular Choices",
+        image: "./Assets/Interior1.jpg"
+    },
+    {
+        title: "Premium Dining",
+        subtitle: "High-End Experience",
+        image: "./Assets/Interior1.jpg"
+    }
+];
+
+
+// STATE MANAGEMENT
+
+const state = {
+    restaurants: [...restaurantsDB],
+    filteredRestaurants: [...restaurantsDB],
+    activeCategory: "all",
+    selectedLocation: "karnal",
+    searchQuery: "",
+    sortBy: "trending",
+    priceFilter: "",
+    debounceTimer: null
+};
+
