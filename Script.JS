@@ -177,3 +177,53 @@ const state = {
     debounceTimer: null
 };
 
+// DOM SELECTORS
+// ============================================
+
+const dom = {
+    // Navbar
+    locationSelect: document.getElementById("location"),
+    searchInput: document.getElementById("search-input"),
+    
+    // Category buttons
+    categoryButtons: document.querySelectorAll(".category-btn"),
+    
+    // Filters
+    sortSelect: document.getElementById("sort-select"),
+    costFilter: document.getElementById("cost-filter"),
+    resetBtn: document.getElementById("reset-filters"),
+    
+    // Content
+    restaurantsGrid: document.getElementById("restaurants-grid"),
+    collectionsGrid: document.getElementById("collections-grid"),
+    emptyState: document.getElementById("empty-state"),
+    loadingSpinner: document.getElementById("loading-spinner")
+};
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+
+/**
+ * Debounce function to optimize search performance
+ */
+const debounce = (callback, delay) => {
+    return (...args) => {
+        clearTimeout(state.debounceTimer);
+        state.debounceTimer = setTimeout(() => callback(...args), delay);
+    };
+};
+
+/**
+ * Calculate price range category
+ */
+const getPriceCategory = (price) => {
+    if (price < 500) return "budget";
+    if (price < 2000) return "moderate";
+    return "premium";
+};
+
+/**
+ * Format price with Indian rupee
+ */
+const formatPrice = (price) => `₹${price.toLocaleString("en-IN")}`;
