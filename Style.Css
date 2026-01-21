@@ -13,7 +13,7 @@
     --primary-red-light: #fdecec;
     --rating-green: #1fa84f;
     --text-dark: #333;
-    --text-gray: #626262;
+    --text-gray: #4d4a4a;
     --border-light: #e8e8e8;
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
     --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.12);
@@ -66,7 +66,7 @@ body {
 }
 
 .navbar__brand h1 {
-    font-size: 28px;
+    font-size: 35px;
     font-weight: 800;
     color: var(--primary-red);
     letter-spacing: -0.5px;
@@ -302,13 +302,13 @@ body {
 }
 
 .collections h2 {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 8px;
-    color: var(--text-dark);
+    color: black;
 }
 
 .collections p {
-    font-size: 14px;
+    font-size: 18px;
     color: var(--text-gray);
     margin-bottom: 20px;
 }

@@ -227,3 +227,214 @@ const getPriceCategory = (price) => {
  * Format price with Indian rupee
  */
 const formatPrice = (price) => `₹${price.toLocaleString("en-IN")}`;
+
+
+/**
+ * Filter restaurant by search query
+ */
+const matchesSearch = (restaurant, query) => {
+    if (!query) return true;
+    const lowerQuery = query.toLowerCase();
+    return (
+        restaurant.name.toLowerCase().includes(lowerQuery) ||
+        restaurant.cuisines.some(c => c.toLowerCase().includes(lowerQuery))
+    );
+};
+
+// ============================================
+// FILTER & SORT FUNCTIONS
+// ============================================
+
+/**
+ * Apply all filters and sorts
+ */
+const applyFilters = () => {
+    let filtered = state.restaurants.filter(restaurant => {
+        // Category filter
+        if (state.activeCategory !== "all" && restaurant.category !== state.activeCategory) {
+            return false;
+        }
+
+        // Search filter
+        if (!matchesSearch(restaurant, state.searchQuery)) {
+            return false;
+        }
+
+        // Price filter
+        if (state.priceFilter) {
+            const priceCategory = getPriceCategory(restaurant.price);
+            if (priceCategory !== state.priceFilter) {
+                return false;
+            }
+        }
+
+        return true;
+    });
+
+    // Apply sorting
+    filtered = sortRestaurants(filtered, state.sortBy);
+
+    state.filteredRestaurants = filtered;
+    renderRestaurants();
+    updateEmptyState();
+};
+
+/**
+ * Sort restaurants based on selected criteria
+ */
+const sortRestaurants = (restaurants, sortType) => {
+    const sorted = [...restaurants];
+
+    switch (sortType) {
+        case "rating-high":
+            return sorted.sort((a, b) => b.rating - a.rating);
+        case "rating-low":
+            return sorted.sort((a, b) => a.rating - b.rating);
+        case "distance":
+            return sorted.sort((a, b) => a.distance - b.distance);
+        case "cost-low":
+            return sorted.sort((a, b) => a.price - b.price);
+        case "cost-high":
+            return sorted.sort((a, b) => b.price - a.price);
+        case "trending":
+        default:
+            return sorted.sort((a, b) => b.rating - a.rating);
+    }
+};
+
+// ============================================
+// RENDER FUNCTIONS
+// ============================================
+
+/**
+ * Render a single restaurant card
+ */
+const createRestaurantCard = (restaurant) => {
+    const priceRange = `₹${restaurant.price} for two`;
+    const discountBadge = restaurant.discount 
+        ? `<div class="card__discount">Flat ${restaurant.discount}% OFF</div>`
+        : "";
+
+    return `
+        <div class="card">
+            <div class="card__image">
+                <img 
+                    src="${restaurant.image}" 
+                    alt="${restaurant.name}"
+                    loading="lazy"
+                >
+                ${discountBadge}
+            </div>
+            <div class="card__content">
+                <div class="card__header">
+                    <h3 class="card__name">${restaurant.name}</h3>
+                    <span class="card__rating">${restaurant.rating} ★</span>
+                </div>
+                <p class="card__cuisine">${restaurant.cuisines.join(", ")}</p>
+                <div class="card__meta">
+                    <span class="card__price">${formatPrice(restaurant.price)}</span>
+                    <span class="card__distance">${restaurant.distance} km</span>
+                </div>
+                <p class="card__location">📍 ${restaurant.location}</p>
+            </div>
+        </div>
+    `;
+};
+
+/**
+ * Render all restaurants
+ */
+const renderRestaurants = () => {
+    dom.restaurantsGrid.innerHTML = state.filteredRestaurants
+        .map(restaurant => createRestaurantCard(restaurant))
+        .join("");
+
+    // Add stagger animation
+    const cards = dom.restaurantsGrid.querySelectorAll(".card");
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.05}s`;
+    });
+};
+
+/**
+ * Render collections
+ */
+const renderCollections = () => {
+    dom.collectionsGrid.innerHTML = collectionsDB
+        .map(collection => `
+            <div class="collection-card">
+                <img 
+                    src="${collection.image}" 
+                    alt="${collection.title}"
+                    loading="lazy"
+                >
+                <div class="collection-info">
+                    <h3>${collection.title}</h3>
+                    <p>${collection.subtitle}</p>
+                </div>
+            </div>
+        `)
+        .join("");
+};
+
+/**
+ * Show/Hide empty state
+ */
+const updateEmptyState = () => {
+    if (state.filteredRestaurants.length === 0) {
+        dom.emptyState.classList.remove("hidden");
+        dom.restaurantsGrid.innerHTML = "";
+    } else {
+        dom.emptyState.classList.add("hidden");
+    }
+};
+
+// ============================================
+// EVENT HANDLERS
+// ============================================
+
+/**
+ * Handle location change
+ */
+const handleLocationChange = (e) => {
+    state.selectedLocation = e.target.value;
+    applyFilters();
+};
+
+/**
+ * Handle search input with debounce
+ */
+const handleSearch = debounce((e) => {
+    state.searchQuery = e.target.value.trim();
+    applyFilters();
+}, 300);
+
+/**
+ * Handle category filter
+ */
+const handleCategoryClick = (e) => {
+    // Remove active class from all buttons
+    dom.categoryButtons.forEach(btn => btn.classList.remove("active"));
+
+    // Add active class to clicked button
+    e.currentTarget.classList.add("active");
+
+    state.activeCategory = e.currentTarget.dataset.category;
+    applyFilters();
+};
+
+/**
+ * Handle sort change
+ */
+const handleSortChange = (e) => {
+    state.sortBy = e.target.value;
+    applyFilters();
+};
+
+/**
+ * Handle price filter change
+ */
+const handlePriceFilterChange = (e) => {
+    state.priceFilter = e.target.value;
+    applyFilters();
+};
