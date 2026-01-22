@@ -14,7 +14,7 @@ const restaurantsDB = [
     {
         id: 2,
         name: "Munshi Ram & Sons",
-        image: "./Assets/Restraunt2..png",
+        image: "./Assets/Restraunt2.png",
         rating: 4.4,
         cuisines: ["North Indian", "Chinese", "Bakery"],
         price: 800,
@@ -38,7 +38,7 @@ const restaurantsDB = [
     {
         id: 4,
         name: "Vatika Bar & Restaurant",
-        image: "./Assets/Restraunt2..png",
+        image: "./Assets/Restraunt2.png",
         rating: 3.9,
         cuisines: ["Bar", "Chinese", "North Indian"],
         price: 6000,
@@ -50,7 +50,7 @@ const restaurantsDB = [
     {
         id: 5,
         name: "Surinder Vaishno Dhaba",
-        image: "./Assets/Restraunt2..png",
+        image: "./Assets/Restraunt2.png",
         rating: 4.4,
         cuisines: ["North Indian", "Snacks"],
         price: 800,
@@ -74,7 +74,7 @@ const restaurantsDB = [
     {
         id: 7,
         name: "Cafe Grillz",
-        image: "./Assets/Restraunt2..png",
+        image: "./Assets/Restraunt2.png",
         rating: 3.9,
         cuisines: ["Italian", "Continental", "Chinese"],
         price: 1200,
@@ -110,7 +110,7 @@ const restaurantsDB = [
     {
         id: 10,
         name: "Sukoon",
-        image: "./Assets/Restraunt2..png",
+        image: "./Assets/Restraunt2.png",
         rating: 3.9,
         cuisines: ["Fast Food", "Beverages", "Snacks"],
         price: 600,
@@ -134,7 +134,7 @@ const restaurantsDB = [
     {
         id: 12,
         name: "Burger King",
-        image: "./Assets/Restraunt2..png",
+        image: "./Assets/Restraunt2.png",
         rating: 4.5,
         cuisines: ["Fast Food", "Beverages"],
         price: 500,
@@ -154,12 +154,17 @@ const collectionsDB = [
     {
         title: "Trending Now",
         subtitle: "Popular Choices",
-        image: "./Assets/Interior1.jpg"
+        image: "./Assets/Interior2.jpg"
     },
     {
         title: "Premium Dining",
         subtitle: "High-End Experience",
-        image: "./Assets/Interior1.jpg"
+        image: "./Assets/Interior3.jpg"
+    },
+    {
+        title: "Lavish Buffet",
+        subtitle: "Luxurious Dining",
+        image: "./Assets/Interior4.jpg"
     }
 ];
 
@@ -310,7 +315,6 @@ const sortRestaurants = (restaurants, sortType) => {
  * Render a single restaurant card
  */
 const createRestaurantCard = (restaurant) => {
-    const priceRange = `₹${restaurant.price} for two`;
     const discountBadge = restaurant.discount 
         ? `<div class="card__discount">Flat ${restaurant.discount}% OFF</div>`
         : "";
@@ -437,4 +441,73 @@ const handleSortChange = (e) => {
 const handlePriceFilterChange = (e) => {
     state.priceFilter = e.target.value;
     applyFilters();
+};
+
+
+/**
+ * Reset all filters
+ */
+const handleResetFilters = () => {
+    state.activeCategory = "all";
+    state.searchQuery = "";
+    state.sortBy = "trending";
+    state.priceFilter = "";
+
+    // Reset UI
+    dom.locationSelect.value = "karnal";
+    dom.searchInput.value = "";
+    dom.sortSelect.value = "trending";
+    dom.costFilter.value = "";
+
+    // Reset active category button
+    dom.categoryButtons.forEach((btn, index) => {
+        btn.classList.toggle("active", index === 0);
+    });
+
+    applyFilters();
+};
+
+// ============================================
+// EVENT LISTENERS
+// ============================================
+
+const initializeEventListeners = () => {
+    dom.locationSelect.addEventListener("change", handleLocationChange);
+    dom.searchInput.addEventListener("input", handleSearch);
+    dom.sortSelect.addEventListener("change", handleSortChange);
+    dom.costFilter.addEventListener("change", handlePriceFilterChange);
+    dom.resetBtn.addEventListener("click", handleResetFilters);
+
+    dom.categoryButtons.forEach(btn => {
+        btn.addEventListener("click", handleCategoryClick);
+    });
+};
+
+// ============================================
+// INITIALIZATION
+// ============================================
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Render initial content
+    renderRestaurants();
+    renderCollections();
+    
+    // Initialize event listeners
+    initializeEventListeners();
+
+    // Console feedback
+    console.log("🍕 Zomato Clone initialized successfully!");
+    console.log(`📊 Total restaurants: ${state.restaurants.length}`);
+});
+
+// ============================================
+// EXPORTS (Module-like pattern)
+// ============================================
+
+window.ZomatoApp = {
+    state,
+    applyFilters,
+    sortRestaurants,
+    renderRestaurants,
+    getPriceCategory
 };
